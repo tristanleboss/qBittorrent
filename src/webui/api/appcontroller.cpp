@@ -164,6 +164,9 @@ void AppController::preferencesAction()
     // Run an external program on torrent finished
     data[u"autorun_enabled"_qs] = pref->isAutoRunOnTorrentFinishedEnabled();
     data[u"autorun_program"_qs] = pref->getAutoRunOnTorrentFinishedProgram();
+    // Run an external program on torrent removed
+    data[u"autorun_on_torrent_removed_enabled"_qs] = pref->isAutoRunOnTorrentRemovedEnabled();
+    data[u"autorun_on_torrent_removed_program"_qs] = pref->getAutoRunOnTorrentRemovedProgram();
 
     // Connection
     // Listening Port
@@ -524,6 +527,11 @@ void AppController::setPreferencesAction()
         pref->setAutoRunOnTorrentFinishedEnabled(it.value().toBool());
     if (hasKey(u"autorun_program"_qs))
         pref->setAutoRunOnTorrentFinishedProgram(it.value().toString());
+    // Run an external program on torrent removed
+    if (hasKey(u"autorun_on_torrent_removed_enabled"_qs))
+        pref->setAutoRunOnTorrentRemovedEnabled(it.value().toBool());
+    if (hasKey(u"autorun_on_torrent_removed_program"_qs))
+        pref->setAutoRunOnTorrentRemovedProgram(it.value().toString());
 
     // Connection
     // Listening Port

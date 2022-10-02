@@ -1435,6 +1435,24 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupBoxRunOnRemoved">
+                 <property name="title">
+                  <string>Run on torrent removed</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_39">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditRunOnRemoved"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="autoRunConsole">
                  <property name="text">
                   <string>Show console window</string>
@@ -3605,6 +3623,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkSmtpSSL</tabstop>
   <tabstop>lineEditRunOnAdded</tabstop>
   <tabstop>lineEditRunOnFinished</tabstop>
+  <tabstop>lineEditRunOnRemoved</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
   <tabstop>checkMaxConnections</tabstop>

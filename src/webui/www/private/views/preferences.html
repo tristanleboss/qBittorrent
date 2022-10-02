@@ -212,6 +212,11 @@
             <label for="autorun_checkbox">QBT_TR(Run external program on torrent finished)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="autorunProg_txt" style="width: 400px;" />
         </div>
+        <div class="formRow">
+            <input type="checkbox" id="autorunOnTorrentRemovedCheckbox" onclick="qBittorrent.Preferences.updateAutoRunOnTorrentRemoved();" />
+            <label for="autorunOnTorrentRemovedCheckbox">QBT_TR(Run external program on torrent removed)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="autorunOnTorrentRemovedProgram" style="width: 400px;" />
+        </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
             <ul>
                 <li>QBT_TR(%N: Torrent name)QBT_TR[CONTEXT=OptionsDialog]</li>
@@ -1368,6 +1373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateMailAuthSettings: updateMailAuthSettings,
                 updateAutoRun: updateAutoRun,
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
+                updateAutoRunOnTorrentRemoved: updateAutoRunOnTorrentRemoved,
                 generateRandomPort: generateRandomPort,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
@@ -1499,6 +1505,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateAutoRunOnTorrentAdded = function() {
             const isAutoRunOnTorrentAddedEnabled = $('autorunOnTorrentAddedCheckbox').getProperty('checked');
             $('autorunOnTorrentAddedProgram').setProperty('disabled', !isAutoRunOnTorrentAddedEnabled);
+        };
+
+        const updateAutoRunOnTorrentRemoved = function() {
+            const isAutoRunOnTorrentRemovedEnabled = $('autorunOnTorrentRemovedCheckbox').getProperty('checked');
+            $('autorunOnTorrentRemovedProgram').setProperty('disabled', !isAutoRunOnTorrentRemovedEnabled);
         };
 
         const updateAutoRun = function() {
@@ -1812,6 +1823,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
                         $('autorunProg_txt').setProperty('value', pref.autorun_program);
                         updateAutoRun();
+                        // Run an external program on torrent removed
+                        $('autorunOnTorrentRemovedCheckbox').setProperty('checked', pref.autorun_on_torrent_removed_enabled);
+                        $('autorunOnTorrentRemovedProgram').setProperty('value', pref.autorun_on_torrent_removed_program);
+                        updateAutoRunOnTorrentRemoved();
 
                         // Connection tab
                         // Listening Port
@@ -2138,6 +2153,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Run an external program on torrent finished
             settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
             settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+            // Run an external program on torrent removed
+            settings.set('autorun_on_torrent_removed_enabled', $('autorunOnTorrentRemovedCheckbox').getProperty('checked'));
+            settings.set('autorun_on_torrent_removed_program', $('autorunOnTorrentRemovedProgram').getProperty('value'));
 
             // Connection tab
             // Listening Port

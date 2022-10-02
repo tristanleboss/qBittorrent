@@ -260,6 +260,10 @@ public:
     void setAutoRunOnTorrentFinishedEnabled(bool enabled);
     QString getAutoRunOnTorrentFinishedProgram() const;
     void setAutoRunOnTorrentFinishedProgram(const QString &program);
+    bool isAutoRunOnTorrentRemovedEnabled() const;
+    void setAutoRunOnTorrentRemovedEnabled(const bool enabled);
+    QString getAutoRunOnTorrentRemovedProgram() const;
+    void setAutoRunOnTorrentRemovedProgram(const QString &program);
 #if defined(Q_OS_WIN)
     bool isAutoRunConsoleEnabled() const;
     void setAutoRunConsoleEnabled(bool enabled);

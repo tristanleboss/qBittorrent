@@ -603,8 +603,10 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->groupBoxRunOnAdded->setChecked(pref->isAutoRunOnTorrentAddedEnabled());
     m_ui->groupBoxRunOnFinished->setChecked(pref->isAutoRunOnTorrentFinishedEnabled());
+    m_ui->groupBoxRunOnRemoved->setChecked(pref->isAutoRunOnTorrentRemovedEnabled());
     m_ui->lineEditRunOnAdded->setText(pref->getAutoRunOnTorrentAddedProgram());
     m_ui->lineEditRunOnFinished->setText(pref->getAutoRunOnTorrentFinishedProgram());
+    m_ui->lineEditRunOnRemoved->setText(pref->getAutoRunOnTorrentRemovedProgram());
 #if defined(Q_OS_WIN)
     m_ui->autoRunConsole->setChecked(pref->isAutoRunConsoleEnabled());
 #else
@@ -678,6 +680,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditRunOnAdded, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditRunOnFinished, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditRunOnRemoved, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 }
 
@@ -733,6 +736,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setAutoRunOnTorrentAddedProgram(m_ui->lineEditRunOnAdded->text().trimmed());
     pref->setAutoRunOnTorrentFinishedEnabled(m_ui->groupBoxRunOnFinished->isChecked());
     pref->setAutoRunOnTorrentFinishedProgram(m_ui->lineEditRunOnFinished->text().trimmed());
+    pref->setAutoRunOnTorrentRemovedEnabled(m_ui->groupBoxRunOnRemoved->isChecked());
+    pref->setAutoRunOnTorrentRemovedProgram(m_ui->lineEditRunOnRemoved->text().trimmed());
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif

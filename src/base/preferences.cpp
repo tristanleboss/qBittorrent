@@ -904,6 +904,26 @@ void Preferences::setAutoRunOnTorrentFinishedProgram(const QString &program)
     setValue(u"AutoRun/program"_qs, program);
 }
 
+bool Preferences::isAutoRunOnTorrentRemovedEnabled() const
+{
+    return value(u"AutoRun/OnTorrentRemoved/Enabled"_qs, false);
+}
+
+void Preferences::setAutoRunOnTorrentRemovedEnabled(const bool enabled)
+{
+    setValue(u"AutoRun/OnTorrentRemoved/Enabled"_qs, enabled);
+}
+
+QString Preferences::getAutoRunOnTorrentRemovedProgram() const
+{
+    return value<QString>(u"AutoRun/OnTorrentRemoved/Program"_qs);
+}
+
+void Preferences::setAutoRunOnTorrentRemovedProgram(const QString &program)
+{
+    setValue(u"AutoRun/OnTorrentRemoved/Program"_qs, program);
+}
+
 #if defined(Q_OS_WIN)
 bool Preferences::isAutoRunConsoleEnabled() const
 {
